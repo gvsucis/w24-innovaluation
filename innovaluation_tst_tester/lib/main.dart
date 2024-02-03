@@ -32,6 +32,21 @@ class MyApp extends StatelessWidget {
   // so far is set up consistent theming for the application)
   @override
   Widget build(BuildContext context) {
+
+    FirebaseFirestore db = FirebaseFirestore.instance;
+
+// Create a new user with a first and last name
+    final user = <String, dynamic>{
+      "first": "Ada",
+      "last": "Lovelace",
+      "born": 1815
+    };
+
+// Add a new document with a generated ID
+    db.collection("users").add(user).then((DocumentReference doc) =>
+        print('DocumentSnapshot added with ID: ${doc.id}'));
+
+
     return MaterialApp(
       title: 'Innovaluation TST App',
       theme: ThemeData.light().copyWith(
